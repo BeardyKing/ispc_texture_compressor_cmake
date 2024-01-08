@@ -1,5 +1,32 @@
 # Fast ISPC Texture Compressor
 
+#### Fork of the Intel ISPC texture compression library with added CMake support and minimal changes to the core library
+
+### Clone
+
+``` cmd
+    git clone https://github.com/BeardyKing/ispc_texture_compressor_cmake.git
+```
+
+### CMake
+
+``` cmake
+#ISPC .exe location 
+set(ISPC_COMPILER_LOCATION $ENV{ISPC_COMPILER_LOCATION})
+
+#ISPC target
+set(ISPC_COMPILER_TARGET "avx2")
+#set(ISPC_COMPILER_TARGET "sse2")
+
+add_subdirectory(ispc_texture_compressor_cmake)
+
+target_link_libraries(target
+        ispc_texture_compressor
+)
+```
+
+### Library
+
 This repository contains a texture compression library for the following
 formats:
 
@@ -10,7 +37,7 @@ formats:
 * BC1, BC3 (aka DXT1, DXT5) and BC4, BC5 (aka ATI1N, ATI2N)
 
 The library uses the [ISPC compiler](https://ispc.github.io/) to generate CPU
-SIMD-optimized compression algorithms.  For more information, see the [Fast ISPC
+SIMD-optimized compression algorithms. For more information, see the [Fast ISPC
 Texture
 Compressor](https://software.intel.com/en-us/articles/fast-ispc-texture-compressor-update)
 article on Intel Developer Zone.
@@ -50,13 +77,13 @@ changes.
 
 Binaries for ISPC v1.9.2 need to be obtained separately (e.g., from [the ISPC
 repo](https://ispc.github.io/downloads.html) or [the SourceForge
-mirror](http://sourceforge.net/projects/ispcmirror/files/v1.9.2/)).  Download
+mirror](http://sourceforge.net/projects/ispcmirror/files/v1.9.2/)). Download
 the appropriate compiler for your target, and place the binary in the following
 directories:
 
- - ISPC/linux/
- - ISPC/osx/
- - ISPC/win/
+- ISPC/linux/
+- ISPC/osx/
+- ISPC/win/
 
 Source for the ISPC Texture Compressor library is under `ispc_texcomp/`.
 
@@ -70,11 +97,13 @@ compression variants is under `ISPC Texture Compressor/`.
 * Use `ISPC Texture Compressor\ISPC Texture Compressor.sln` to build and run the sample
 
 #### Mac OS X:
+
 * The build has been tested with Xcode 7.3 with minimum OS X deployment version set to 10.9
 * Use `ispc_texcomp.xcodeproj` to build the ISPC Texture Compressor library
- * dylib install name is set to `@executable_path/../Frameworks/$(EXECUTABLE_PATH)`
+* dylib install name is set to `@executable_path/../Frameworks/$(EXECUTABLE_PATH)`
 * The sample application is not available on OS X.
 
 #### Linux:
+
 * Use `make -f Makefile.linux` to build the ISPC Texture Compressor library
 * The sample application is not available on Linux.
